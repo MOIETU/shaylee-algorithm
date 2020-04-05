@@ -195,7 +195,9 @@ public class LevelOrderPrinter extends Printer {
 			for (Node node : rowNodes) {
 				Node left = node.left;
 				Node right = node.right;
-				if (left == null && right == null) continue;
+				if (left == null && right == null) {
+					continue;
+				}
 				if (left != null && right != null) {
 					// 让左右节点对称
 					node.balance(left, right);
@@ -247,7 +249,9 @@ public class LevelOrderPrinter extends Printer {
 	}
 
 	private Node addLineNode(List<Node> curRow, List<Node> nextRow, Node parent, Node child) {
-		if (child == null) return null;
+		if (child == null) {
+			return null;
+		}
 
 		Node top = null;
 		int topX = child.topLineX();
@@ -286,7 +290,9 @@ public class LevelOrderPrinter extends Printer {
 		List<List<Node>> newNodes = new ArrayList<>();
 
 		int rowCount = nodes.size();
-		if (rowCount < 2) return;
+		if (rowCount < 2) {
+			return;
+		}
 
 		minX = root.x;
 
@@ -374,7 +380,9 @@ public class LevelOrderPrinter extends Printer {
 		 * 右边界的位置（rightX 或者 右子节点topLineX的下一个位置）（极其重要）
 		 */
 		private int rightBound() {
-			if (right == null) return rightX();
+			if (right == null) {
+				return rightX();
+			}
 			return right.topLineX() + 1;
 		}
 
@@ -426,8 +434,9 @@ public class LevelOrderPrinter extends Printer {
 		 * 让left和right基于this对称
 		 */
 		private void balance(Node left, Node right) {
-			if (left == null || right == null)
+			if (left == null || right == null) {
 				return;
+			}
 			// 【left的尾字符】与【this的首字符】之间的间距
 			int deltaLeft = x - left.rightX();
 			// 【this的尾字符】与【this的首字符】之间的间距
@@ -442,8 +451,12 @@ public class LevelOrderPrinter extends Printer {
 		}
 
 		private int treeHeight(Node node) {
-			if (node == null) return 0;
-			if (node.treeHeight != 0) return node.treeHeight;
+			if (node == null) {
+				return 0;
+			}
+			if (node.treeHeight != 0) {
+				return node.treeHeight;
+			}
 			node.treeHeight = 1 + Math.max(
 					treeHeight(node.left), treeHeight(node.right));
 			return node.treeHeight;
@@ -465,9 +478,13 @@ public class LevelOrderPrinter extends Printer {
 		}
 
 		private LevelInfo levelInfo(int level) {
-			if (level < 0) return null;
+			if (level < 0) {
+				return null;
+			}
 			int levelY = y + level;
-			if (level >= treeHeight(this)) return null;
+			if (level >= treeHeight(this)) {
+				return null;
+			}
 
 			List<Node> list = new ArrayList<>();
 			Queue<Node> queue = new LinkedList<>();
@@ -501,11 +518,15 @@ public class LevelOrderPrinter extends Printer {
 		}
 
 		public void translateX(int deltaX) {
-			if (deltaX == 0) return;
+			if (deltaX == 0) {
+				return;
+			}
 			x += deltaX;
 
 			// 如果是LineNode
-			if (btNode == null) return;
+			if (btNode == null) {
+				return;
+			}
 
 			if (left != null) {
 				left.translateX(deltaX);

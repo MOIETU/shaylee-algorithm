@@ -11,7 +11,9 @@ public class Files {
 	}
 	
 	public static void writeToFile(String filePath, Object data, boolean append) {
-		if (filePath == null || data == null) return;
+		if (filePath == null || data == null) {
+			return;
+		}
 		
 		try {
 			File file = new File(filePath);

@@ -12,8 +12,12 @@ public class Strings {
 	}
 	
 	public static String blank(int length) {
-		if (length < 0) return null;
-		if (length == 0) return "";
+		if (length < 0) {
+			return null;
+		}
+		if (length == 0) {
+			return "";
+		}
 		return String.format("%" + length + "s", "");
 	}
 }
